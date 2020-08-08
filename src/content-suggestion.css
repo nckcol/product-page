@@ -1,0 +1,12 @@
+.content-suggestion {
+}
+
+.content-suggestion__list {
+  display: inline-flex;
+  margin: 0 -8px;
+}
+
+.content-suggestion__item {
+  flex: 0 0 auto;
+  padding: 0 8px;
+}

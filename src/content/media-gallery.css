@@ -1,0 +1,19 @@
+.media-gallery-add-button {
+  appearance: none;
+  border: 1px solid #eee;
+  background: none;
+  height: 120px;
+  border-radius: 4px;
+  font-size: 18px;
+  padding: 8px 16px;
+}
+
+.media-gallery-add-button__picture {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto;
+}
+
+.media-gallery-add-button__label {
+  margin-top: 8px;
+}

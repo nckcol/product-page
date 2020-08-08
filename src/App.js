@@ -1,24 +1,45 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import {nanoid} from 'nanoid';
+import MediaGallery from './content/MediaGallery';
+import ContentSuggestion from './ContentSuggestion';
+
+const CONTENT_TYPE = {
+  MEDIA_GALLERY: 'CONTENT_TYPE/MEDIA_GALLERY',
+};
 
 function App() {
+  const [content, setContent] = useState([
+    {
+      id: 1,
+      type: CONTENT_TYPE.MEDIA_GALLERY,
+      data: {
+        title: 'фото футболки 📷',
+        src: 'https://picsum.photos/200/300',
+      },
+    },
+  ]);
+
+  const handleContentAdd = (type, data) => {
+    setContent(
+      content.concat({
+        id: nanoid(),
+        type,
+        data,
+      })
+    );
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Enter product name here</h1>
+      {content.map(({type, id, data}) => {
+        if (type === CONTENT_TYPE.MEDIA_GALLERY) {
+          return <MediaGallery key={id} data={data} />;
+        }
+
+        return null;
+      })}
+      <ContentSuggestion onAdd={handleContentAdd} />
     </div>
   );
 }
