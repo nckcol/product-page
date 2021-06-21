@@ -1,5 +1,5 @@
 import React from 'react';
-import GalleryPicture from './icons/GalleryPicture';
+import GalleryPicture from './GalleryPicture';
 import './media-gallery.css';
 
 export const MediaGalleryAddButton = (props) => {
