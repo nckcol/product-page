@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import GalleryPicture from '../icons/GalleryPicture';
 import './text.css';
 
@@ -14,14 +14,9 @@ export const TextAddButton = (props) => {
 };
 
 export const TextEdit = ({data, onChange}) => {
-  return (
-    <textarea
-      value={(data && data.text) || ''}
-      onChange={(event) => {
-        onChange({text: event.target.value});
-      }}
-    />
-  );
+  const handleChange = useCallback((e) => onChange(e.target.value), [onChange]);
+
+  return <textarea className="text-edit" value={data?.text || ''} onChange={handleChange} />;
 };
 
 const Text = ({data}) => {
