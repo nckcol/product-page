@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {nanoid} from 'nanoid';
 import MediaGallery, {MediaGalleryAddButton} from './content/MediaGallery';
 import ContentSuggestion from './ContentSuggestion';
-import Text, {TextAddButton, TextEdit} from './content/Text';
+import Text, {TextAddButton, TextEdit} from './content/Text/Text';
 
 const CONTENT_TYPE = {
   TEXT: 'CONTENT_TYPE/TEXT',
