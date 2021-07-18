@@ -1,13 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {nanoid} from 'nanoid';
+
 import MediaGallery from './content/MediaGallery';
 import ContentSuggestion from './ContentSuggestion';
 import Text, {TextAddButton, TextEdit} from './content/Text/Text';
 
-const CONTENT_TYPE = {
-  TEXT: 'CONTENT_TYPE/TEXT',
-  MEDIA_GALLERY: 'CONTENT_TYPE/MEDIA_GALLERY',
-};
+import {CONTENT_TYPE} from './constants';
 
 function Content({children}) {
   return <div calssName="content">{children}</div>;
