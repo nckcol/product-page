@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {nanoid} from 'nanoid';
-import MediaGallery, {MediaGalleryAddButton} from './content/MediaGallery';
+import MediaGallery from './content/MediaGallery';
 import ContentSuggestion from './ContentSuggestion';
 import Text, {TextAddButton, TextEdit} from './content/Text/Text';
 
@@ -13,39 +13,43 @@ function Content({children}) {
   return <div calssName="content">{children}</div>;
 }
 
-function ContentItem({data, edit, component: Display, editComponent: Edit, onEdit, onSave}) {
+function ContentItem({data, edit, component: Display, editComponent: Edit, onEdit, saveComponent: Save, onSave}) {
   const [state, setState] = useState(null);
 
   useEffect(() => {
     if (edit) {
       setState(data);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [edit]);
 
-  console.log(data, state);
-
-  return (
-    <div calssName="content-item">
-      {!edit && (
-        <div calssName="content-item__edit">
-          <button onClick={onEdit}>edit</button>
-        </div>
-      )}
-      {edit ? (
+  if (edit) {
+    return (
+      <div calssName="content-item">
         <Edit
           data={state}
           onChange={(data) => {
             setState(data);
           }}
+          onSave={onSave}
         />
-      ) : (
-        <Display data={data} />
-      )}
-      {edit && (
-        <div calssName="content-item__submit">
-          <button onClick={() => onSave(state)}>save</button>
-        </div>
-      )}
+
+        {Save && (
+          <div calssName="content-item__submit">
+            <Save onSave={onSave} />
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div calssName="content-item">
+      <div calssName="content-item__edit">
+        <button onClick={onEdit}>edit</button>
+      </div>
+
+      <Display data={data} />
     </div>
   );
 }
