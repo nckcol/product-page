@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {nanoid} from 'nanoid';
 
 import MediaGallery from './content/MediaGallery';
@@ -21,16 +21,12 @@ function ContentItem({data, edit, component: Display, editComponent: Edit, onEdi
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [edit]);
 
+  const handleChange = useCallback((data) => setState(data), []);
+
   if (edit) {
     return (
       <div calssName="content-item">
-        <Edit
-          data={state}
-          onChange={(data) => {
-            setState(data);
-          }}
-          onSave={onSave}
-        />
+        <Edit data={state} onChange={handleChange} onSave={onSave} />
 
         {Save && (
           <div calssName="content-item__submit">
