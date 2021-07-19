@@ -9,7 +9,7 @@ import Text, {TextAddButton, TextEdit} from './content/Text/Text';
 import {CONTENT_TYPE} from './constants';
 
 function Content({children}) {
-  return <div calssName="content">{children}</div>;
+  return <div className="content">{children}</div>;
 }
 
 function ContentItem({data, edit, component: Display, editComponent: Edit, onEdit, saveComponent: Save, onSave}) {
@@ -26,11 +26,11 @@ function ContentItem({data, edit, component: Display, editComponent: Edit, onEdi
 
   if (edit) {
     return (
-      <div calssName="content-item">
+      <div className="content-item">
         <Edit data={state} onChange={handleChange} onSave={onSave} />
 
         {Save && (
-          <div calssName="content-item__submit">
+          <div className="content-item__submit">
             <Save onSave={onSave} />
           </div>
         )}
@@ -39,8 +39,8 @@ function ContentItem({data, edit, component: Display, editComponent: Edit, onEdi
   }
 
   return (
-    <div calssName="content-item">
-      <div calssName="content-item__edit">
+    <div className="content-item">
+      <div className="content-item__edit">
         <button onClick={onEdit}>edit</button>
       </div>
 
@@ -104,6 +104,7 @@ function App() {
             if (item.type === CONTENT_TYPE.TEXT) {
               return (
                 <ContentItem
+                  key={item.id}
                   data={item.data}
                   edit={item.edit}
                   onEdit={() => {
