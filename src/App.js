@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {nanoid} from 'nanoid';
 
+import Container from './components/Container/Container';
 import MediaGallery from './content/MediaGallery';
 import ContentSuggestion from './ContentSuggestion';
 import Text, {TextAddButton, TextEdit} from './content/Text/Text';
@@ -96,45 +97,47 @@ function App() {
 
   return (
     <div>
-      <h1>Enter product name here</h1>
-      <Content>
-        {content.map((item) => {
-          if (item.type === CONTENT_TYPE.TEXT) {
-            return (
-              <ContentItem
-                data={item.data}
-                edit={item.edit}
-                onEdit={() => {
-                  edit(item.id);
-                }}
-                onSave={(data) => {
-                  save(item.id, data);
-                }}
-                component={Text}
-                editComponent={TextEdit}
-              />
-            );
-          }
+      <Container>
+        <h1>Enter product name here</h1>
+        <Content>
+          {content.map((item) => {
+            if (item.type === CONTENT_TYPE.TEXT) {
+              return (
+                <ContentItem
+                  data={item.data}
+                  edit={item.edit}
+                  onEdit={() => {
+                    edit(item.id);
+                  }}
+                  onSave={(data) => {
+                    save(item.id, data);
+                  }}
+                  component={Text}
+                  editComponent={TextEdit}
+                />
+              );
+            }
 
-          if (item.type === CONTENT_TYPE.MEDIA_GALLERY) {
-            return <MediaGallery key={item.id} data={item.data} />;
-          }
+            if (item.type === CONTENT_TYPE.MEDIA_GALLERY) {
+              return <MediaGallery key={item.id} data={item.data} />;
+            }
 
-          return null;
-        })}
-      </Content>
-      <ContentSuggestion>
-        <ContentSuggestion.Item>
-          <TextAddButton
-            onClick={() => {
-              add(CONTENT_TYPE.TEXT);
-            }}
-          />
-        </ContentSuggestion.Item>
-        {/* <ContentSuggestion.Item>
+            return null;
+          })}
+        </Content>
+        <ContentSuggestion>
+          <ContentSuggestion.Item>
+            <TextAddButton
+              onClick={() => {
+                add(CONTENT_TYPE.TEXT);
+              }}
+            />
+          </ContentSuggestion.Item>
+          {/* <ContentSuggestion.Item>
           <MediaGalleryAddButton onAdd={handleContentAdd} />
         </ContentSuggestion.Item> */}
-      </ContentSuggestion>
+        </ContentSuggestion>
+      </Container>
     </div>
   );
 }
